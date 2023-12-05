@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etPassword: TextInputEditText
     private lateinit var btnSave: Button
     private lateinit var btnNext: Button
+    private lateinit var btnRecy: Button
+
 
     private var db = Firebase.firestore
 
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.textInputEditText4)
         btnSave = findViewById(R.id.btnSave)
         btnNext = findViewById(R.id.btnNext)
+        btnRecy = findViewById(R.id.btnRecy)
+
 
         btnSave.setOnClickListener {
             val sName = etName.text.toString().trim()
@@ -50,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 //            val userId = FirebaseAuth.getInstance().currentUser?.uid
 
 //            if (userId != null) {
-                db.collection("user").document("VixLEpD3YLz9avpd6N6a").set(userMap)
+                db.collection("user").document().set(userMap)
                     .addOnSuccessListener {
                         showToast("successfully Added!")
                         etName.text?.clear()
@@ -68,6 +72,10 @@ class MainActivity : AppCompatActivity() {
 //        }
         btnNext.setOnClickListener {
             val intent = Intent(this, RetrieveDataActivity::class.java)
+            startActivity(intent)
+        }
+        btnRecy.setOnClickListener {
+            val intent = Intent(this, RecyclerViewActivity::class.java)
             startActivity(intent)
         }
     }
